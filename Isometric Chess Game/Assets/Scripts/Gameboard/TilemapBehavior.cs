@@ -7,25 +7,29 @@ using log4net.DateFormatter;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
-using PlayerUnits;
-//using System.Numerics;
 
+//TODO implement system that handles player turns
 //TODO write code that makes individual tiles in a tilemap respond when hovered over by cursor (move tile up or have sprite appear, etc.)
-//TODO write code that allows players to make action happen when clicking on a tile with a unit on it
-//TODO write code that makes selected unit move to another tile
+//TODO write code that interpolates piece movement over time to essentially animate the movement smoothly
 
-namespace Gameboard {
+namespace CheckmateInnovations {
     public class TilemapBehavior : MonoBehaviour {
 
         //*********************************************
         //* VARIABLES
         //*********************************************
-        public PlayerUnit selectedUnit;
+        public static TilemapBehavior Instance { get; private set; }
 
+        public UnityEvent OnUnitMoved;
+        public UnityEvent<PlayerUnit, PlayerUnit> OnUnitCapture; //TODO UnityEvent OnUnitMoved also accounts for capture but that can be handled with a separate event
+
+        public PlayerUnit selectedUnit;
         private Tilemap tilemap;
-        public GameObject selectedObject;               //? Redundant to have selectedObject AND selectedUnit
+        public GameObject selectedObject;   //? Redundant to have selectedObject AND selectedUnit
         public GameObject hoveringObject;
         public GameObject pathTile;
+        public Material activeMaterial;
+        public Material inactiveMaterial;
 
         public List<Vector3Int> movePath;
         public List<Vector3Int> lastMovePath;
@@ -36,13 +40,21 @@ namespace Gameboard {
 
         public float transformScale = 1.5f;
         public float translateAmount;
-        public bool hasSelectedPiece;                   //? May be obsolete
         public bool isHovering;
         public bool pathIsDrawn;
+        public bool _inputEnabled;
 
         //*********************************************
         //* START + UPDATE FUNCTIONS
         //*********************************************
+
+        void Awake() {
+            if (Instance == null) {
+                Instance = this;
+            } else {
+                Destroy(gameObject);
+            }
+        }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start() {
@@ -50,36 +62,16 @@ namespace Gameboard {
             tilemap = this.GetComponent<Tilemap>();
             selectedObject = null;
             selectedUnit = null;
-            hasSelectedPiece = false;
             pathIsDrawn = false;
-
-            // // Iterate through all the children of the tilemap
-            // int counter = 0; // include a counter to differentiate between objects of identical names
-            // foreach (Transform child in tilemap.transform) {
-            //     // Append the counter to the child's name
-            //     child.name = $"{child.name}_{counter}";
-            //     Debug.Log("Found painted GameObject: " + child.name);
-
-            //     GameObject gameObject = child.gameObject; // Example of getting the GameObject from the Transform
-
-            //     // Move the child in a direction that is within the bounds of the tilemap
-            //     Vector3Int cellPosition = tilemap.WorldToCell(child.position); // Convert world position of child to cell position in tilemap
-            //     bool moveCheck = tilemap.HasTile(cellPosition + Vector3Int.right); // Check if the child can move to the right on the tilemap
-            //     if (moveCheck) {
-            //         //child.transform.Translate(Vector3Int.right);
-            //         Debug.Log("Child translated Cell Position: " + (cellPosition + Vector3Int.right));
-            //         child.transform.position = tilemap.GetCellCenterWorld(cellPosition + Vector3Int.right); // Use GetCellCenterWorld and NOT CellToWorld
-            //         //TODO Lerp the movement
-            //         //tile.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / (animationDuration / 2));
-            //     }
-
-            //     counter++; // increment the counter
-            // }
-
+            _inputEnabled = true;
         }
 
         // Update is called once per frame
         void Update() {
+            //TODO check for GameState (player turn, etc.)
+            // GameManager.Instance.TestFunction();
+            // GameManager.Instance.OnPlayer1TurnStart.Invoke();
+
             // Get mouse position from screen to world to tilemap cell coordinates
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0;
@@ -88,47 +80,17 @@ namespace Gameboard {
             // Update the Render Order for all the GameObjects on this tilemap
             UpdateRenderOrder();
 
-            // Perform Actions for Left Mouse Click (GetMouseButtonDown(0))
-            if (Input.GetMouseButtonDown(0)) {
-                MouseClickLeft(mouseWorldPos);
+            // Check that input on the tilemap is enabled
+            if (_inputEnabled) {
+                // Perform Actions for Left Mouse Click (GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0)) {
+                    MouseClickLeft(mouseWorldPos);
+                }
+
+                if (Input.GetMouseButtonDown(1)) {
+                    MouseClickRight(mouseWorldPos);
+                }
             }
-
-            // // Actions to perform when an object is selected 
-            // //TODO movement path should be calculated by the unit selected based on its movement rules
-            // if (selectedObject != null) {
-            //     // Calculate the movement path
-            //     CalculateMovementPathGeneric();
-
-            //     // If the movement path has changed, delete the old one before drawing a new one
-            //     if (PathChanged()) {
-            //         ClearMovementPath();
-            //     }
-
-            //     // If a movepath exists and the mouse is within the tilemap bounds, draw the path
-            //     if (movePath != null && MouseInBounds()) {
-            //         DrawMovementPath();
-            //     }
-
-            // } else {    // if no GameObject is selected, clear last path
-            //     ClearMovementPath();
-            // }
-
-            // //TODO Logic needs to be cleaned up, shouldn't have to call CalculateMovementPath every frame. Maybe only on mouse click?
-            // if (selectedObject != null && selectedObject.tag == "Unit") {
-            //     selectedUnit = selectedObject.GetComponent<PlayerUnit>();
-            //     movePath = selectedUnit.CalculateMovementPath();
-
-            //     if (PathChanged()) {
-            //         ClearMovementPath();
-            //     }
-
-            //     if (movePath != null) {
-            //         DrawMovementPath();
-            //     }
-
-            // } else {
-            //     ClearMovementPath();
-            // }
 
             // Variable Post-Condition Updates
             lastMouseCellPos = cellPosition;
@@ -183,6 +145,7 @@ namespace Gameboard {
                 DeselectObject();
             }
             selectedObject = obj;
+            selectedObject.GetComponent<SpriteRenderer>().material = activeMaterial;
             // selectedObject.transform.localScale *= transformScale;
             Debug.Log("Selected: " + selectedObject.name);
         }
@@ -190,9 +153,11 @@ namespace Gameboard {
         void DeselectObject() {
             if (selectedObject != null) {
                 Debug.Log("Deselected: " + selectedObject.name);
+                selectedObject.GetComponent<SpriteRenderer>().material = inactiveMaterial;
                 // selectedObject.transform.localScale /= transformScale;
                 selectedObject = null;
             }
+            ClearMovementPath();
         }
 
         // Calculate the Path of Cells between the Mouse and the selected GameObject
@@ -232,15 +197,22 @@ namespace Gameboard {
 
         // Draw the path formed from CalculateMovementPath()
         void DrawMovementPath() {
-            // if movePath exists and there is no path drawn yet, draw path
-            if (movePath != null && !pathIsDrawn) {
-                movePathTiles = new List<GameObject>();
-                // Generate the movement path tiles
-                foreach (Vector3Int tilePos in movePath) {
-                    movePathTiles.Add(Instantiate(pathTile, tilemap.GetCellCenterWorld(tilePos), Quaternion.identity));
+            if (selectedObject != null && selectedObject.tag == "Unit") {
+                // Clear old path drawing
+                ClearMovementPath();
+
+                selectedUnit = selectedObject.GetComponent<PlayerUnit>();
+                movePath = selectedUnit.CalculateMovementPath();
+
+                if (movePath != null) {
+                    movePathTiles = new List<GameObject>();
+                    foreach (Vector3Int tilePos in movePath) {
+                        movePathTiles.Add(Instantiate(pathTile, tilemap.GetCellCenterWorld(tilePos), Quaternion.identity));
+                    }
+                    pathIsDrawn = true;
                 }
-                pathIsDrawn = true;
             }
+
         }
 
         void ClearMovementPath() {
@@ -338,6 +310,27 @@ namespace Gameboard {
             return hits;
         }
 
+        //TODO check if unit selected belongs to current player
+        private bool BelongsToCurrentPlayer(GameObject targetObject) {
+            // Get PlayerUnit script from passed in GameObject
+            PlayerUnit targetUnit = targetObject.GetComponent<PlayerUnit>();
+
+            // Check if the selected unit belongs to current player
+            if (targetUnit.player.name == "Player_1" && GameManager.Instance.CurrentState == GameManager.GameState.Player1Turn) {
+                return true;
+            }
+
+            if (targetUnit.player.name == "Player_2" && GameManager.Instance.CurrentState == GameManager.GameState.Player2Turn) {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void SetInputEnabled(bool enabled) {
+            _inputEnabled = enabled;
+        }
+
         //*********************************************
         //* EVENT FUNCTIONS
         //*********************************************
@@ -350,7 +343,10 @@ namespace Gameboard {
             if (hit != null) {
                 switch (hit.tag) {
                     case "Unit":
-                        SelectObject(hit.gameObject);
+                        if (BelongsToCurrentPlayer(hit.gameObject)) {
+                            SelectObject(hit.gameObject);
+                            DrawMovementPath();
+                        }
                         break;
                     case "Path":
                         if (selectedObject != null && selectedUnit != null) {
@@ -359,29 +355,20 @@ namespace Gameboard {
                         }
                         break;
                     default:
+                        ClearMovementPath();
                         break;
                 }
             } else {
                 DeselectObject();
             }
 
-            // Check if an object was selected. If that object is a Unit, calculate the movement path based on that unit's moveset rules
-            if (selectedObject != null && selectedObject.tag == "Unit") {
-                selectedUnit = selectedObject.GetComponent<PlayerUnit>();
-                movePath = selectedUnit.CalculateMovementPath();
+        }
 
-                if (PathChanged()) {    // Is the new path different from the last path? Clear old path
-                    ClearMovementPath();
-                }
-
-                if (movePath != null) { // Has a move path been calculated?
-                    DrawMovementPath();
-                }
-
-            } else {
-                ClearMovementPath();
+        void MouseClickRight(Vector3 mousePos) {
+            // Deselect unit if one is currently selected
+            if (selectedObject != null && selectedUnit != null) {
+                DeselectObject();
             }
-
         }
 
         //! Currently avoiding OnMouse events because they require interaction with a collider associated with the tilemap which is currently an issue

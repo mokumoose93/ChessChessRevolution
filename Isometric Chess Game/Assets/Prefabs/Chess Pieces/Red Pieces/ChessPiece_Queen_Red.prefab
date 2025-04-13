@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2014965845956037160}
   - component: {fileID: -2813201511674938865}
   - component: {fileID: -1851923702538185906}
+  - component: {fileID: 2446395948271559114}
   m_Layer: 0
   m_Name: ChessPiece_Queen_Red
   m_TagString: Unit
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!60 &-2813201511674938865
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -135,15 +136,26 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.11, y: 0.272}
-      - {x: -0.14, y: 0.272}
-      - {x: -0.14999999, y: 0.252}
-      - {x: -0.14999999, y: -0.027999992}
-      - {x: -0.089999996, y: -0.047999993}
-      - {x: 0.089999996, y: -0.047999993}
-      - {x: 0.13, y: -0.007999992}
-      - {x: 0.14999999, y: 0.132}
-      - {x: 0.14999999, y: 0.222}
+    - - {x: 0.105623394, y: 0.23260874}
+      - {x: 0.066933274, y: 0.203378}
+      - {x: 0.058115985, y: 0.14760774}
+      - {x: 0.028031373, y: 0.20525716}
+      - {x: 0.043818884, y: 0.23819421}
+      - {x: 0.0010271305, y: 0.27607787}
+      - {x: -0.038573626, y: 0.24924353}
+      - {x: -0.02470186, y: 0.21702565}
+      - {x: -0.052809697, y: 0.14955844}
+      - {x: -0.067886524, y: 0.21476243}
+      - {x: -0.10235962, y: 0.23348412}
+      - {x: -0.13511886, y: 0.21085803}
+      - {x: -0.13654879, y: 0.16813992}
+      - {x: -0.119228154, y: 0.15267538}
+      - {x: -0.1088581, y: -0.003489893}
+      - {x: -0.008591689, y: -0.05062613}
+      - {x: 0.017344885, y: -0.049750745}
+      - {x: 0.104614705, y: -0.0018724431}
+      - {x: 0.117611684, y: 0.14688113}
+      - {x: 0.14299697, y: 0.18698557}
   m_UseDelaunayMesh: 0
 --- !u!114 &-1851923702538185906
 MonoBehaviour:
@@ -160,9 +172,23 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 647218716653922556, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 647218716653922556, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
+  player: {fileID: 9221185371240964086, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
+--- !u!114 &2446395948271559114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726631305813557235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}

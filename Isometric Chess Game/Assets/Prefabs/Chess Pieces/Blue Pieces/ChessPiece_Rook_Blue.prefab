@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5139578178846208802}
   - component: {fileID: 3344682826758624463}
   - component: {fileID: -2821292793041573392}
+  - component: {fileID: -7084026715964256143}
   m_Layer: 0
   m_Name: ChessPiece_Rook_Blue
   m_TagString: Unit
@@ -135,14 +136,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.04, y: 0.27199996}
-      - {x: -0.11, y: 0.23199996}
-      - {x: -0.11, y: -0.01800003}
-      - {x: -0.07, y: -0.04800003}
-      - {x: 0.07, y: -0.04800003}
-      - {x: 0.11, y: -0.03800003}
-      - {x: 0.11, y: 0.25199997}
-      - {x: 0.07, y: 0.27199996}
+    - - {x: 0.0011418946, y: 0.26412174}
+      - {x: -0.09074207, y: 0.22499703}
+      - {x: -0.09424339, y: 0.12205792}
+      - {x: -0.07875359, y: 0.11569274}
+      - {x: -0.07884701, y: 0.05118349}
+      - {x: -0.09905213, y: 0.028196886}
+      - {x: -0.09915952, y: -0.01590607}
+      - {x: 0.00079699815, y: -0.053419136}
+      - {x: 0.09888699, y: -0.012985494}
+      - {x: 0.09862019, y: 0.036405835}
+      - {x: 0.07618018, y: 0.050285604}
+      - {x: 0.07877704, y: 0.1092306}
+      - {x: 0.09786846, y: 0.12073639}
+      - {x: 0.09424339, y: 0.22836526}
+      - {x: 0.0060986727, y: 0.26324627}
   m_UseDelaunayMesh: 0
 --- !u!114 &-2821292793041573392
 MonoBehaviour:
@@ -159,9 +167,23 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
+  player: {fileID: 3378266199826300384, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
+--- !u!114 &-7084026715964256143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301900555510033180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}

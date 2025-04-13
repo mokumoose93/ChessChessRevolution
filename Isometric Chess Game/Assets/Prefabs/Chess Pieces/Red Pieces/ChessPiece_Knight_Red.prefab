@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4534882754248561582}
   - component: {fileID: -32582581956961469}
   - component: {fileID: 8866865240371601808}
+  - component: {fileID: -7913558677961247174}
   m_Layer: 0
   m_Name: ChessPiece_Knight_Red
   m_TagString: Unit
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!60 &-32582581956961469
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -135,15 +136,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.06, y: 0.272}
-      - {x: -0.06, y: 0.272}
-      - {x: -0.11, y: 0.202}
-      - {x: -0.11, y: -0.028}
-      - {x: -0.08, y: -0.048}
-      - {x: 0.07, y: -0.048}
-      - {x: 0.11, y: -0.038000003}
-      - {x: 0.11, y: 0.202}
-      - {x: 0.08, y: 0.242}
+    - - {x: 0.033739243, y: 0.272}
+      - {x: -0.00005909195, y: 0.24827608}
+      - {x: -0.038115844, y: 0.26762322}
+      - {x: -0.09249283, y: 0.17223774}
+      - {x: -0.09210201, y: 0.12658352}
+      - {x: -0.05552059, y: 0.11422582}
+      - {x: -0.0965038, y: 0.036158707}
+      - {x: -0.09686943, y: -0.013118772}
+      - {x: -0.011721872, y: -0.050626133}
+      - {x: 0.014847984, y: -0.04847493}
+      - {x: 0.096260756, y: -0.009484146}
+      - {x: 0.097744904, y: 0.033779636}
+      - {x: 0.07363323, y: 0.061531782}
+      - {x: 0.086139336, y: 0.08127838}
+      - {x: 0.086365275, y: 0.19324642}
+      - {x: 0.06686981, y: 0.24462613}
   m_UseDelaunayMesh: 0
 --- !u!114 &8866865240371601808
 MonoBehaviour:
@@ -160,9 +168,23 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 647218716653922556, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 647218716653922556, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
+  player: {fileID: 9221185371240964086, guid: 924b5cdeacbf8bd4b95506e340925a63, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
+--- !u!114 &-7913558677961247174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2904835239803557909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}

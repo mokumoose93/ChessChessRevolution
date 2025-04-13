@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3338488530478352825}
   - component: {fileID: -1932524587293373989}
   - component: {fileID: 3165448098955195391}
+  - component: {fileID: -9153638237550407430}
   m_Layer: 0
   m_Name: ChessPiece_Pawn_Blue
   m_TagString: Unit
@@ -119,7 +120,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -135,16 +136,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.03, y: 0.212}
-      - {x: -0.01, y: 0.212}
-      - {x: -0.08, y: 0.182}
-      - {x: -0.089999996, y: 0.112}
-      - {x: -0.089999996, y: -0.03799999}
-      - {x: -0.07, y: -0.047999993}
-      - {x: 0.08, y: -0.047999993}
-      - {x: 0.089999996, y: -0.03799999}
-      - {x: 0.089999996, y: 0.102000006}
-      - {x: 0.08, y: 0.182}
+    - - {x: 0.055385664, y: 0.17786089}
+      - {x: -0.0000005546026, y: 0.19886957}
+      - {x: -0.025756607, y: 0.18836522}
+      - {x: -0.057356056, y: 0.1741973}
+      - {x: -0.05636528, y: 0.09884068}
+      - {x: -0.048858106, y: 0.08398844}
+      - {x: -0.08212151, y: -0.020492721}
+      - {x: 0.0026551038, y: -0.053252164}
+      - {x: 0.0835015, y: -0.018237725}
+      - {x: 0.05060867, y: 0.080173805}
+      - {x: 0.05761131, y: 0.10200006}
+      - {x: 0.05811622, y: 0.16886957}
   m_UseDelaunayMesh: 0
 --- !u!114 &3165448098955195391
 MonoBehaviour:
@@ -161,10 +164,24 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
+  player: {fileID: 3378266199826300384, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
   pawnMoveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &-9153638237550407430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254262440672437844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}

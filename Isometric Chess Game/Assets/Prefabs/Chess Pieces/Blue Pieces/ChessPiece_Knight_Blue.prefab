@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6978278368100657837}
   - component: {fileID: -8836865672417160835}
   - component: {fileID: -7867430901595961974}
+  - component: {fileID: 4539740761181541685}
   m_Layer: 0
   m_Name: ChessPiece_Knight_Blue
   m_TagString: Unit
@@ -135,15 +136,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.06, y: 0.272}
-      - {x: -0.11, y: 0.192}
-      - {x: -0.11, y: -0.017999992}
-      - {x: -0.07, y: -0.047999993}
-      - {x: 0.06, y: -0.047999993}
-      - {x: 0.11, y: -0.027999992}
-      - {x: 0.11, y: 0.122}
-      - {x: 0.099999994, y: 0.202}
-      - {x: 0.06, y: 0.272}
+    - - {x: -0.0069172503, y: 0.24861547}
+      - {x: -0.048620373, y: 0.25711888}
+      - {x: -0.09632994, y: 0.18744369}
+      - {x: -0.09686981, y: 0.11059135}
+      - {x: -0.07705314, y: 0.08189917}
+      - {x: -0.074971065, y: 0.052064132}
+      - {x: -0.09693877, y: 0.038613223}
+      - {x: -0.095118865, y: -0.017999992}
+      - {x: -0.018353574, y: -0.047999993}
+      - {x: 0.034614332, y: -0.046249334}
+      - {x: 0.09686981, y: -0.0131188575}
+      - {x: 0.096416414, y: 0.038566016}
+      - {x: 0.05763696, y: 0.08687954}
+      - {x: 0.08636528, y: 0.11062028}
+      - {x: 0.086869806, y: 0.16698557}
+      - {x: 0.029362258, y: 0.27462608}
   m_UseDelaunayMesh: 0
 --- !u!114 &-7867430901595961974
 MonoBehaviour:
@@ -160,9 +168,23 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
+  player: {fileID: 3378266199826300384, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
+--- !u!114 &4539740761181541685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7356659312491929269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3078278176144891474}
   - component: {fileID: -525707103758700875}
   - component: {fileID: -7897655057507885987}
+  - component: {fileID: 4873310740160262224}
   m_Layer: 0
   m_Name: ChessPiece_King_Blue
   m_TagString: Unit
@@ -135,14 +136,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.099999994, y: 0.27199996}
-      - {x: -0.14, y: 0.24199997}
-      - {x: -0.14, y: -0.02800003}
-      - {x: -0.08, y: -0.04800003}
-      - {x: 0.089999996, y: -0.04800003}
-      - {x: 0.14, y: -0.00800003}
-      - {x: 0.14, y: 0.24199997}
-      - {x: 0.08, y: 0.27199996}
+    - - {x: -0.0798664, y: 0.25711876}
+      - {x: -0.11724075, y: 0.22186665}
+      - {x: -0.11736247, y: 0.109579965}
+      - {x: -0.10701243, y: 0.10420639}
+      - {x: -0.10306537, y: 0.06529067}
+      - {x: -0.122530244, y: 0.05317461}
+      - {x: -0.12511887, y: 0.013141956}
+      - {x: -0.009970926, y: -0.04800003}
+      - {x: 0.01909545, y: -0.046249274}
+      - {x: 0.124243386, y: 0.013883936}
+      - {x: 0.12505545, y: 0.052789237}
+      - {x: 0.10637029, y: 0.063027784}
+      - {x: 0.10846685, y: 0.101927884}
+      - {x: 0.11750844, y: 0.11069586}
+      - {x: 0.11548981, y: 0.22011591}
+      - {x: 0.08262603, y: 0.2544927}
   m_UseDelaunayMesh: 0
 --- !u!114 &-7897655057507885987
 MonoBehaviour:
@@ -159,9 +168,23 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
+  player: {fileID: 3378266199826300384, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
+--- !u!114 &4873310740160262224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396614403042912380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}

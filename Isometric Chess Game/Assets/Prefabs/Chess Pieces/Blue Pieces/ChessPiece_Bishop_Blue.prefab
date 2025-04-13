@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 638061395940535688}
   - component: {fileID: 9101701963976427086}
   - component: {fileID: -8067619302332961063}
+  - component: {fileID: 573618140135805006}
   m_Layer: 0
   m_Name: ChessPiece_Bishop_Blue
   m_TagString: Unit
@@ -135,14 +136,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.049999997, y: 0.272}
-      - {x: -0.11, y: 0.14199999}
-      - {x: -0.11, y: -0.018000001}
-      - {x: -0.07, y: -0.048}
-      - {x: 0.07, y: -0.048}
-      - {x: 0.11, y: -0.038000003}
-      - {x: 0.11, y: 0.132}
-      - {x: 0.049999997, y: 0.272}
+    - - {x: -0.023739241, y: 0.272}
+      - {x: -0.097744904, y: 0.11398843}
+      - {x: -0.08155742, y: 0.052054964}
+      - {x: -0.09686981, y: -0.011872548}
+      - {x: -0.013101496, y: -0.049750756}
+      - {x: 0.016603012, y: -0.048}
+      - {x: 0.09074188, y: -0.008237734}
+      - {x: 0.08309827, y: 0.047776684}
+      - {x: 0.09249283, y: 0.11186669}
+      - {x: 0.02373924, y: 0.272}
   m_UseDelaunayMesh: 0
 --- !u!114 &-8067619302332961063
 MonoBehaviour:
@@ -159,9 +162,23 @@ MonoBehaviour:
   unitType: 0
   tilemapBehavior: {fileID: 0}
   tilemap: {fileID: 0}
-  player: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
-  playerData: {fileID: 0}
+  playerObject: {fileID: 5092554761592183001, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
+  player: {fileID: 3378266199826300384, guid: d304d6e3969faae4db9db246f6cbe58e, type: 3}
   maxBoundX: 0
   maxBoundY: 0
   minBoundX: 0
   minBoundY: 0
+--- !u!114 &573618140135805006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978963059762326124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4444ecaf5de2f9144a4ceb5d57be2be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectScale: 1.5
+  glowMaterial: {fileID: 2100000, guid: 903c4a0815737d940820150ad0c53c61, type: 2}
