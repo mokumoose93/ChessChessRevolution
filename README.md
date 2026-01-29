@@ -1,5 +1,5 @@
 # CheckmateInnovations
-Checkmate Innovations: Chess 1.2 - TAMUCC Software Engineering Course Project
+Checkmate Innovations: Chess Chess Revolution - TAMUCC Software Engineering Course Project
 
 ## Getting Started
 ---
